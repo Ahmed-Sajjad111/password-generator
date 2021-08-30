@@ -1,11 +1,11 @@
 // Assignment code here
 function generatePassword() {
   // ask user for length of password
-  var promptLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
-  promptLength = parseInt(promptLength);
+  var passLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
+  passLength = parseInt(passLength);
 
   // if input is less than 8 or greater than 128 return generatePassword()
-  if (promptLength >= 8 && promptLength <= 128){
+  if (passLength >= 8 && passLength <= 128){
   } else {
   window.alert("You need to provide a valid answer! Please try again.");
   return generatePassword();
@@ -19,37 +19,41 @@ function generatePassword() {
   
   // password criteria object
   var confirmOptions = {
-    length: promptLength,
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numeric: "0123456789",
-    specialchar: "!@#$%^&*()_+~`|}{[]\\:;?><,./-="
+    length: passLength,
+    lowercase: ["a"+"b"+"c"+"d"+"e"+"f"+"g"+"h"+"i"+"j"+"k"+"l"+"m"+"n"+"o"+"p"+"q"+"r"+"s"+"t"+"u"+"v"+"w"+"x"+"y"+"z"],
+    uppercase: ["A"+"B"+"C"+"D"+"E"+"F"+"G"+"H"+"I"+"J"+"K"+"L"+"M"+"N"+"O"+"P"+"Q"+"R"+"S"+"T"+"U"+"V"+"W"+"X"+"Y"+"Z"],
+    numeric: ["0"+"1"+"2"+"3"+"4"+"5"+"6"+"7"+"8"+"9"],
+    specialchar: ['!'+'@'+'#'+'$'+'%'+'^'+'&'+'*'+'('+')'+'_'+'+'+'~'+'`'+'|'+'}'+'{'+'['+']'+'\\'+':'+';'+'?'+'>'+'<'+','+'.'+'/'+'-'+'=']
   };
-  var criteria = [];
+  var characterPool = [];
+  var finalPass = "";
 
   // if statements to push options to an array
-  if (promptLength >= 8 || promptLength <=128) {
+  if (passLength >= 8 || passLength <=128) {
     //logic to push to array
-    criteria.push(confirmOptions.length)
+    characterPool.push(confirmOptions.length)
   }
   if (confirmLowerCase === true) {
     //logic to push to array
-    criteria.push(confirmOptions.lowercase)
+    characterPool.push(confirmOptions.lowercase)
   }
   if (confirmUpperCase === true) {
     //logic to push to array
-    criteria.push(confirmOptions.uppercase)
+    characterPool.push(confirmOptions.uppercase)
   }
   if (confirmNumeric === true) {
     //logic to push to array
-    criteria.push(confirmOptions.numeric)
+    characterPool.push(confirmOptions.numeric)
   }
   if (confirmSpecialChar === true) {
     //logic to push to array
-    criteria.push(confirmOptions.specialchar)
+    characterPool.push(confirmOptions.specialchar)
   }
-
-  //for loop to generate password
+  console.log(characterPool);
+  //while loop to generate password
+  while(finalPass < passLength) {
+    
+  }
 
 };
 
