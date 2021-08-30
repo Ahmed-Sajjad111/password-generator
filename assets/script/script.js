@@ -19,37 +19,47 @@ function generatePassword() {
   
   // password criteria object
   var confirmOptions = {
-    length: passLength,
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numeric: "0123456789",
-    specialchar: "!@#$%^&*()_+~`|}{[]\\:;?><,./-="
+    lowercase: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
+    uppercase: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+    numeric: ["0","1","2","3","4","5","6","7","8","9"],
+    specialchar: ['!','@','#','$','%','^','&','*','(',')','_',',','~','`','|','}','{','[',']','\\',':',';','?','>','<',',','.','/','-','=']
   };
-  var criteria = [];
+  var characterPool = [];
+  var finalPass = "";
 
   // if statements to push options to an array
-  if (passLength >= 8 || passLength <=128) {
-    //logic to push to array
-    criteria.push(confirmOptions.length)
-  }
   if (confirmLowerCase === true) {
     //logic to push to array
-    criteria.push(confirmOptions.lowercase)
+    characterPool.push(confirmOptions.lowercase)
   }
   if (confirmUpperCase === true) {
     //logic to push to array
-    criteria.push(confirmOptions.uppercase)
+    characterPool.push(confirmOptions.uppercase)
   }
   if (confirmNumeric === true) {
     //logic to push to array
-    criteria.push(confirmOptions.numeric)
+    characterPool.push(confirmOptions.numeric)
   }
   if (confirmSpecialChar === true) {
     //logic to push to array
-    criteria.push(confirmOptions.specialchar)
+    characterPool.push(confirmOptions.specialchar)
   }
-  console.log(criteria);
+  console.log(confirmOptions.specialchar.length);
   //for loop to generate password
+  for (let i = 0; i < passLength; i++) {
+    // Math.floor(Math.random() * characterPool.length);
+    // console.log(Math.floor(Math.random() * characterPool.length));
+    var poolArray = characterPool[Math.floor(Math.random() * characterPool.length)]
+    // console.log(poolArray);
+    var categoryIndex = (Math.floor(Math.random() * (poolArray.length +1)));
+    if (categoryIndex >= poolArray.length) {
+      categoryIndex = poolArray.length -1
+    }
+    finalPass = finalPass + poolArray[categoryIndex]
+    console.log(finalPass);
+  }
+  // if confirmOptions are true call functions for criteria to validate via for loops
+  return finalPass;
 };
 
 // Get references to the #generate element
