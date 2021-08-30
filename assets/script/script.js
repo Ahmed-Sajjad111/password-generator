@@ -48,7 +48,9 @@ function generatePassword() {
     //logic to push to array
     criteria.push(confirmOptions.specialchar)
   }
-  console.log(criteria);
+
+  //for loop to generate password
+
 };
 
 // Get references to the #generate element
