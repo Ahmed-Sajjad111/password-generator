@@ -1,11 +1,11 @@
 // Assignment code here
 function generatePassword() {
   // ask user for length of password
-  var promptLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
-  promptLength = parseInt(promptLength);
+  var passLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
+  passLength = parseInt(passLength);
 
   // if input is less than 8 or greater than 128 return generatePassword()
-  if (promptLength >= 8 && promptLength <= 128){
+  if (passLength >= 8 && passLength <= 128){
   } else {
   window.alert("You need to provide a valid answer! Please try again.");
   return generatePassword();
@@ -19,7 +19,7 @@ function generatePassword() {
   
   // password criteria object
   var confirmOptions = {
-    length: promptLength,
+    length: passLength,
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numeric: "0123456789",
@@ -28,7 +28,7 @@ function generatePassword() {
   var criteria = [];
 
   // if statements to push options to an array
-  if (promptLength >= 8 || promptLength <=128) {
+  if (passLength >= 8 || passLength <=128) {
     //logic to push to array
     criteria.push(confirmOptions.length)
   }
@@ -48,9 +48,8 @@ function generatePassword() {
     //logic to push to array
     criteria.push(confirmOptions.specialchar)
   }
-
+  console.log(criteria);
   //for loop to generate password
-
 };
 
 // Get references to the #generate element
