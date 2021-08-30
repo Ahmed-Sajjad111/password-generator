@@ -2,13 +2,14 @@
 function generatePassword() {
   // ask user for length of password
   var promptLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
+  promptLength = parseInt(promptLength);
 
-  // if input is less than 8 or greateer than 128 return generatePassword()
+  // if input is less than 8 or greater than 128 return generatePassword()
   if (promptLength >= 8 && promptLength <= 128){
   } else {
-    window.alert("You need to provide a valid answer! Please try again.");
-    return generatePassword();
-  }
+  window.alert("You need to provide a valid answer! Please try again.");
+  return generatePassword();
+  };
 
   // ask user for password criteria
   var confirmLowerCase = window.confirm("Would you like lower case letters to be included in your password?");
@@ -18,19 +19,18 @@ function generatePassword() {
   
   // password criteria object
   var confirmOptions = {
-    length: parseInt(promptLength),
+    length: promptLength,
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numeric: "0123456789",
-    specialchar: "!@#$%^&*()_+~`|}{[]\:;?><,./-="
+    specialchar: "!@#$%^&*()_+~`|}{[]\\:;?><,./-="
   };
-
   var criteria = [];
 
   // if statements to push options to an array
   if (promptLength >= 8 || promptLength <=128) {
     //logic to push to array
-    criteria.push(length)
+    criteria.push(confirmOptions.length)
   }
   if (confirmLowerCase === true) {
     //logic to push to array
