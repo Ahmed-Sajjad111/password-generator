@@ -58,6 +58,8 @@ function generatePassword() {
     finalPass = finalPass + poolArray[categoryIndex]
     console.log(finalPass);
   }
+  // if confirmOptions are true call functions for criteria to validate via for loops
+  return finalPass;
 };
 
 // Get references to the #generate element
