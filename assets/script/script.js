@@ -59,6 +59,40 @@ function generatePassword() {
     console.log(finalPass);
   }
   // if confirmOptions are true call functions for criteria to validate via for loops
+  // ["a", "b", "c", "d"].some(char => string.includes(char))
+  // var lowerCheck = /^(?=.*[a-z])$/;
+  // var upperCheck = /^(?=.*[A-Z])$/;
+  // var numericCheck = /^(?=.*[0-9])$/;
+  // var specialCharCheck = /^(?=.*[!@#$%^&*])$/;
+  // function validate(finalPass) {
+  //   if (confirmLowerCase === true) {
+  //     console.log(lowerCheck.test(finalPass));
+  //   }
+  // }
+  // validate();
+  function validatePassword() {
+    if (confirmLowerCase === true) {
+      if (finalPass.search(/[a-z]/i) < 0) {
+        console.log("no lower found");
+      }
+    }
+    if (confirmUpperCase === true) {
+      if (finalPass.search(/[A-Z]/i) < 0) {
+        console.log("no upper found");
+      }
+    }
+    if (confirmNumeric === true) {
+      if (finalPass.search(/[0-9]/i) < 0) {
+        console.log("no numeric found");
+      }
+    }
+    if (confirmSpecialChar === true) {
+      if (finalPass.search(/[!?@#$%^&*]/i) < 0) {
+        console.log("no special characters found");
+      }
+    }
+  }
+  validatePassword();
   return finalPass;
 };
 
