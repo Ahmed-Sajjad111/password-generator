@@ -91,6 +91,7 @@ function generatePassword() {
     }
     if (errors.length > 0) {
       console.log("error found returning passwordGen()");
+      finalPass = ""
       return passwordGen();
     }
   }
