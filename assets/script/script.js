@@ -71,25 +71,34 @@ function generatePassword() {
   // }
   // validate();
   function validatePassword() {
+    var errors = [];
+
     if (confirmLowerCase === true) {
       if (finalPass.search(/[a-z]/i) < 0) {
         console.log("no lower found");
+        errors.push("lower");
       }
     }
     if (confirmUpperCase === true) {
       if (finalPass.search(/[A-Z]/i) < 0) {
         console.log("no upper found");
+        errors.push("upper");
       }
     }
     if (confirmNumeric === true) {
       if (finalPass.search(/[0-9]/i) < 0) {
         console.log("no numeric found");
+        errors.push("numeric");
       }
     }
     if (confirmSpecialChar === true) {
       if (finalPass.search(/[!?@#$%^&*]/i) < 0) {
         console.log("no special characters found");
+        errors.push("specialchar");
       }
+    }
+    if (errors.length > 0) {
+      console.log("error found");
     }
   }
   validatePassword();
