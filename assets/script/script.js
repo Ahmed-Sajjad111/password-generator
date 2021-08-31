@@ -16,7 +16,7 @@ function generatePassword() {
   var confirmUpperCase = window.confirm("Would you like upper case letters to be included in your password?");
   var confirmNumeric = window.confirm("Would you like numbers to be included in your password?");
   var confirmSpecialChar = window.confirm("Would you like special characters to be included in your password?");
-  
+
   // password criteria object
   var confirmOptions = {
     lowercase: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
@@ -27,49 +27,41 @@ function generatePassword() {
   var characterPool = [];
   var finalPass = "";
 
-  // if statements to push options to an array
-  if (confirmLowerCase === true) {
-    //logic to push to array
-    characterPool.push(confirmOptions.lowercase)
-  }
-  if (confirmUpperCase === true) {
-    //logic to push to array
-    characterPool.push(confirmOptions.uppercase)
-  }
-  if (confirmNumeric === true) {
-    //logic to push to array
-    characterPool.push(confirmOptions.numeric)
-  }
-  if (confirmSpecialChar === true) {
-    //logic to push to array
-    characterPool.push(confirmOptions.specialchar)
-  }
-  console.log(confirmOptions.specialchar.length);
-  //for loop to generate password
-  for (let i = 0; i < passLength; i++) {
-    // Math.floor(Math.random() * characterPool.length);
-    // console.log(Math.floor(Math.random() * characterPool.length));
-    var poolArray = characterPool[Math.floor(Math.random() * characterPool.length)]
-    // console.log(poolArray);
-    var categoryIndex = (Math.floor(Math.random() * (poolArray.length +1)));
-    if (categoryIndex >= poolArray.length) {
-      categoryIndex = poolArray.length -1
+  function passwordGen() {
+    // if statements to push options to an array
+    if (confirmLowerCase === true) {
+      //logic to push to array
+      characterPool.push(confirmOptions.lowercase)
     }
-    finalPass = finalPass + poolArray[categoryIndex]
-    console.log(finalPass);
+    if (confirmUpperCase === true) {
+      //logic to push to array
+      characterPool.push(confirmOptions.uppercase)
+    }
+    if (confirmNumeric === true) {
+      //logic to push to array
+      characterPool.push(confirmOptions.numeric)
+    }
+    if (confirmSpecialChar === true) {
+      //logic to push to array
+      characterPool.push(confirmOptions.specialchar)
+    }
+
+    //for loop to generate password
+    for (let i = 0; i < passLength; i++) {
+      // Math.floor(Math.random() * characterPool.length);
+      // console.log(Math.floor(Math.random() * characterPool.length));
+      var poolArray = characterPool[Math.floor(Math.random() * characterPool.length)]
+      // console.log(poolArray);
+      var categoryIndex = (Math.floor(Math.random() * (poolArray.length +1)));
+      if (categoryIndex >= poolArray.length) {
+        categoryIndex = poolArray.length -1
+      }
+      finalPass = finalPass + poolArray[categoryIndex]
+      console.log(finalPass);
+    }
   }
-  // if confirmOptions are true call functions for criteria to validate via for loops
-  // ["a", "b", "c", "d"].some(char => string.includes(char))
-  // var lowerCheck = /^(?=.*[a-z])$/;
-  // var upperCheck = /^(?=.*[A-Z])$/;
-  // var numericCheck = /^(?=.*[0-9])$/;
-  // var specialCharCheck = /^(?=.*[!@#$%^&*])$/;
-  // function validate(finalPass) {
-  //   if (confirmLowerCase === true) {
-  //     console.log(lowerCheck.test(finalPass));
-  //   }
-  // }
-  // validate();
+
+  // function to validate that the final password includes atleast one from the selected criteria, else rerun the password generation
   function validatePassword() {
     var errors = [];
 
@@ -98,9 +90,12 @@ function generatePassword() {
       }
     }
     if (errors.length > 0) {
-      console.log("error found");
+      console.log("error found returning passwordGen()");
+      return passwordGen();
     }
   }
+
+  passwordGen();
   validatePassword();
   return finalPass;
 };
