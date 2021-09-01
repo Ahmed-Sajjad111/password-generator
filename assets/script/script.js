@@ -71,13 +71,13 @@ function generatePassword() {
     var errors = [];
 
     if (confirmLowerCase === true) {
-      if (finalPass.search(/[a-z]/i) < 0) {
+      if (finalPass.search(/[a-z]/) < 0) {
         console.log("no lower found");
         errors.push("lower");
       }
     }
     if (confirmUpperCase === true) {
-      if (finalPass.search(/[A-Z]/i) < 0) {
+      if (finalPass.search(/[A-Z]/) < 0) {
         console.log("no upper found");
         errors.push("upper");
       }
