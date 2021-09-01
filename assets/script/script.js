@@ -12,10 +12,10 @@ function generatePassword() {
   };
 
   // ask user for password criteria
-  var confirmLowerCase = window.confirm("Would you like lower case letters to be included in your password?");
-  var confirmUpperCase = window.confirm("Would you like upper case letters to be included in your password?");
-  var confirmNumeric = window.confirm("Would you like numbers to be included in your password?");
-  var confirmSpecialChar = window.confirm("Would you like special characters to be included in your password?");
+  var confirmLowerCase = window.confirm("Would you like lower case letters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmUpperCase = window.confirm("Would you like upper case letters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmNumeric = window.confirm("Would you like numbers to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmSpecialChar = window.confirm("Would you like special characters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
 
   // validate that the user picked at least one criteria
   if (confirmLowerCase === false && confirmUpperCase === false && confirmNumeric === false && confirmSpecialChar === false) {
