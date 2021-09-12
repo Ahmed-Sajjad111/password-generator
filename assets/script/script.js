@@ -37,7 +37,7 @@ function generatePassword() {
   // generated password
   var finalPass = "";
 
-  // if statements to push options to an array
+  // logic to push criteria into characterPool array
   function passwordGen() {
     if (confirmLowerCase === true) {
       characterPool.push(confirmOptions.lowercase)
@@ -60,7 +60,6 @@ function generatePassword() {
         categoryIndex = poolArray.length -1
       }
       finalPass = finalPass + poolArray[categoryIndex]
-      console.log(finalPass);
     }
   }
 
@@ -72,31 +71,26 @@ function generatePassword() {
 
     if (confirmLowerCase === true) {
       if (finalPass.search(/[a-z]/) < 0) {
-        console.log("no lower found");
         errors.push("lower");
       }
     }
     if (confirmUpperCase === true) {
       if (finalPass.search(/[A-Z]/) < 0) {
-        console.log("no upper found");
         errors.push("upper");
       }
     }
     if (confirmNumeric === true) {
       if (finalPass.search(/[0-9]/i) < 0) {
-        console.log("no numeric found");
         errors.push("numeric");
       }
     }
     if (confirmSpecialChar === true) {
       if (finalPass.search(/[!?@#$%^&*]/i) < 0) {
-        console.log("no special characters found");
         errors.push("specialchar");
       }
     }
     // if error array has contents, clear password string and regenerate password
     if (errors.length > 0) {
-      console.log("error found returning passwordGen()");
       finalPass = ""
       return passwordGen();
     }
