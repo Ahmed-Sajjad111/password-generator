@@ -1,3 +1,4 @@
+// when the generate button is clicked, prompt user for criteria then generate password
 function generatePassword() {
   // ask user for length of password
   var passLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
@@ -11,10 +12,16 @@ function generatePassword() {
   };
 
   // ask user for password criteria
-  var confirmLowerCase = window.confirm("Would you like lower case letters to be included in your password?");
-  var confirmUpperCase = window.confirm("Would you like upper case letters to be included in your password?");
-  var confirmNumeric = window.confirm("Would you like numbers to be included in your password?");
-  var confirmSpecialChar = window.confirm("Would you like special characters to be included in your password?");
+  var confirmLowerCase = window.confirm("Would you like lower case letters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmUpperCase = window.confirm("Would you like upper case letters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmNumeric = window.confirm("Would you like numbers to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+  var confirmSpecialChar = window.confirm("Would you like special characters to be included in your password? Select 'Okay' for Yes or 'Cancel' for No.");
+
+  // validate that the user picked at least one criteria
+  if (confirmLowerCase === false && confirmUpperCase === false && confirmNumeric === false && confirmSpecialChar === false) {
+    window.alert("You must select at least 1 criteria! Please start over.");
+    return generatePassword();
+  }
 
   // password criteria object
   var confirmOptions = {
@@ -23,12 +30,15 @@ function generatePassword() {
     numeric: ["0","1","2","3","4","5","6","7","8","9"],
     specialchar: ['!','?','@','#','$','%','^','&','*']
   };
-  
+
+  // pool of characters that the for loop can pick from to generate password
   var characterPool = [];
+
+  // generated password
   var finalPass = "";
 
+  // logic to push criteria into characterPool array
   function passwordGen() {
-    // logic to push selected criteria to characterPool array
     if (confirmLowerCase === true) {
       characterPool.push(confirmOptions.lowercase)
     }
@@ -53,17 +63,19 @@ function generatePassword() {
     }
   }
 
-  // function to validate that the final password includes atleast one from the selected criteria, else rerun the password generation
+  // validate that the final password includes atleast one from the selected criteria, else rerun the password generation
   function validatePassword() {
+
+    // empty array for the final if statement to check
     var errors = [];
 
     if (confirmLowerCase === true) {
-      if (finalPass.search(/[a-z]/i) < 0) {
+      if (finalPass.search(/[a-z]/) < 0) {
         errors.push("lower");
       }
     }
     if (confirmUpperCase === true) {
-      if (finalPass.search(/[A-Z]/i) < 0) {
+      if (finalPass.search(/[A-Z]/) < 0) {
         errors.push("upper");
       }
     }
@@ -77,6 +89,7 @@ function generatePassword() {
         errors.push("specialchar");
       }
     }
+    // if error array has contents, clear password string and regenerate password
     if (errors.length > 0) {
       finalPass = ""
       return passwordGen();
