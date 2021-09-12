@@ -1,4 +1,3 @@
-// Assignment code here
 function generatePassword() {
   // ask user for length of password
   var passLength = window.prompt("Please choose the length of your password. Enter a value between 8 characters and 128 characters long.");
@@ -24,40 +23,33 @@ function generatePassword() {
     numeric: ["0","1","2","3","4","5","6","7","8","9"],
     specialchar: ['!','?','@','#','$','%','^','&','*']
   };
+  
   var characterPool = [];
   var finalPass = "";
 
   function passwordGen() {
-    // if statements to push options to an array
+    // logic to push selected criteria to characterPool array
     if (confirmLowerCase === true) {
-      //logic to push to array
       characterPool.push(confirmOptions.lowercase)
     }
     if (confirmUpperCase === true) {
-      //logic to push to array
       characterPool.push(confirmOptions.uppercase)
     }
     if (confirmNumeric === true) {
-      //logic to push to array
       characterPool.push(confirmOptions.numeric)
     }
     if (confirmSpecialChar === true) {
-      //logic to push to array
       characterPool.push(confirmOptions.specialchar)
     }
 
-    //for loop to generate password
+    //for loop to generate password and input into finalPass
     for (let i = 0; i < passLength; i++) {
-      // Math.floor(Math.random() * characterPool.length);
-      // console.log(Math.floor(Math.random() * characterPool.length));
       var poolArray = characterPool[Math.floor(Math.random() * characterPool.length)]
-      // console.log(poolArray);
       var categoryIndex = (Math.floor(Math.random() * (poolArray.length +1)));
       if (categoryIndex >= poolArray.length) {
         categoryIndex = poolArray.length -1
       }
       finalPass = finalPass + poolArray[categoryIndex]
-      console.log(finalPass);
     }
   }
 
@@ -67,30 +59,25 @@ function generatePassword() {
 
     if (confirmLowerCase === true) {
       if (finalPass.search(/[a-z]/i) < 0) {
-        console.log("no lower found");
         errors.push("lower");
       }
     }
     if (confirmUpperCase === true) {
       if (finalPass.search(/[A-Z]/i) < 0) {
-        console.log("no upper found");
         errors.push("upper");
       }
     }
     if (confirmNumeric === true) {
       if (finalPass.search(/[0-9]/i) < 0) {
-        console.log("no numeric found");
         errors.push("numeric");
       }
     }
     if (confirmSpecialChar === true) {
       if (finalPass.search(/[!?@#$%^&*]/i) < 0) {
-        console.log("no special characters found");
         errors.push("specialchar");
       }
     }
     if (errors.length > 0) {
-      console.log("error found returning passwordGen()");
       finalPass = ""
       return passwordGen();
     }
